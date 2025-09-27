@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: Notification Service API
+  version: 1.0.0
+  description: REST API для управления шаблонами и нотификациями
+servers:
+  - url: https://api.marketplace.com/notifications
+paths:
+  /templates:
+    get:
+      summary: Получить список шаблонов
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NotificationTemplate"
+    post:
+      summary: Создать новый шаблон
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotificationTemplate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationTemplate"
+  /notifications:
+    post:
+      summary: Отправить уведомление вручную (overrides event flow)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotificationRequest"
+      responses:
+        "202":
+          description: Accepted
+  /notifications/{id}:
+    get:
+      summary: Получить статус уведомления
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Notification status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+components:
+  schemas:
+    NotificationTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          enum: [ORDER_CREATED, USER_REGISTERED, ITEM_DELIVERED]
+        channelType:
+          type: string
+          enum: [EMAIL, SMS, PUSH]
+        subject:
+          type: string
+        body:
+          type: string
+        locale:
+          type: string
+          example: en_US
+    NotificationRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+        channelType:
+          type: string
+          enum: [EMAIL, SMS, PUSH]
+        recipientAddress:
+          type: string
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [PENDING, SENT, FAILED, RETRY]
+        attempts:
+          type: integer
+        lastError:
+          type: string
