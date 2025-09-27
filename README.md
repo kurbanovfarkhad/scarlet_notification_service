@@ -41,5 +41,7 @@ The service consists of the following components:
 ## 🌐 API Capabilities
 - **Template Management** — CRUD operations for `TemplateEntity`.
 - **Notification Management** — CRUD operations for `Notification`.
+- Bulk messaging
+- NotificationStatus api
 - **Notification History** — view and resend notifications.
 - **User Preferences** — set delivery channel priority for each user.
