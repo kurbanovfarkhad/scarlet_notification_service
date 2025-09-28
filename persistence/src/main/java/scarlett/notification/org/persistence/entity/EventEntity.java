@@ -7,4 +7,7 @@ import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 @Table
 @Entity
 public class EventEntity extends BaseEntity {
+    private String name;
+    private String description;
+    private String schema;
 }
