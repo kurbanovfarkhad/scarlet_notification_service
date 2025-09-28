@@ -1,10 +1,10 @@
-package scarlett.notification.org.scarlett_notification_service;
+package scarlett.notification.org.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ScarlettNotificationServiceApplicationTests {
+class MainApplicationTests {
 
     @Test
     void contextLoads() {
