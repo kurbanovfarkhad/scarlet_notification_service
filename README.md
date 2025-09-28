@@ -45,3 +45,30 @@ The service consists of the following components:
 - NotificationStatus api
 - **Notification History** — view and resend notifications.
 - **User Preferences** — set delivery channel priority for each user.
+# 🔔 Notification Service — System Capabilities
+
+## 1. Event & Template Management
+- Users can create new **events** in the system.
+- Users can add **notification templates**, each template must be linked to an existing event.
+
+## 2. Event Consumption
+- Whenever a **Kafka broker** publishes a new event, the notification service consumes it.
+- The service checks for templates associated with that event and generates notifications if such templates exist.
+
+## 3. Event Payload Schema
+- Each **event record** in the database contains its **Avro schema** definition.
+- This schema defines the payload structure used to populate templates.
+
+## 4. User Preferences & Fallbacks
+- Before sending, the system checks if the **user has channel preferences** (e.g., prefers SMS over email).
+- If no preference is found, the system uses the **default channel** defined in the template configuration.
+
+## 5. Channel Implementations
+- Delivery channels (e.g., **Email, SMS, Push**) are initialized during system bootstrap.
+- Each channel follows a **common abstraction**, so new channels can be plugged in easily.  
+
+## 6. Delivery Channel Failure
+- Each delivery attempt is recorded in the **DeliveryAttempts** table.
+- If delivery fails, the system decreases the remaining attempts counter.
+- The system retries sending until the number of attempts reaches **0**.
+- Once attempts are exhausted, the notification status is marked as **FAILED**. 
