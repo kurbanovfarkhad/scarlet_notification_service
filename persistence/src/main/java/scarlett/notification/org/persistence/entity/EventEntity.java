@@ -1,8 +1,8 @@
-package scarlett.notification.org.integration.entity;
+package scarlett.notification.org.persistence.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import scarlett.notification.org.integration.entity.basic.BaseEntity;
+import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 
 @Table
 @Entity

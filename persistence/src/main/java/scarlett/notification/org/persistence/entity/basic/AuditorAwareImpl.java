@@ -1,4 +1,4 @@
-package scarlett.notification.org.integration.entity.basic;
+package scarlett.notification.org.persistence.entity.basic;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;

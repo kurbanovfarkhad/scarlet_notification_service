@@ -1,4 +1,4 @@
-package scarlett.notification.org.integration;
+package scarlett.notification.org.persistence;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

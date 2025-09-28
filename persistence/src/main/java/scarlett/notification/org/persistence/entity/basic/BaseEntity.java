@@ -1,4 +1,4 @@
-package scarlett.notification.org.integration.entity.basic;
+package scarlett.notification.org.persistence.entity.basic;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
