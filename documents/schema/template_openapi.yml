@@ -17,7 +17,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/TemplateDTO"
+                  $ref: "#/components/schemas/TemplateResponse"
     post:
       summary: Create new Template
       requestBody:
@@ -25,14 +25,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TemplateDTO"
+              $ref: "#/components/schemas/TemplateRequest"
       responses:
         "201":
           description: Template
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TemplateDTO"
+                $ref: "#/components/schemas/TemplateResponse"
   /templates/{templateId}:
     patch:
       summary: Update templates
@@ -49,14 +49,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TemplateDTO"
+              $ref: "#/components/schemas/TemplateRequest"
       responses:
         "201":
           description: Template
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TemplateDTO"
+                $ref: "#/components/schemas/TemplateResponse"
 
     get:
       summary: Get Template by id
@@ -74,10 +74,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TemplateDTO"
+                $ref: "#/components/schemas/TemplateResponse"
 components:
   schemas:
-    TemplateDTO:
+    TemplateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        businessEvent:
+          type: object
+          schema:
+            $ref: "/event_openapi.yml/#/components/schemas/BusinessEventResponse"
+        priority:
+          type: string
+          enums: ['HIGH', 'LOW']
+        defaultChannelType:
+          type: array
+          enums: ['SMS', 'PUSH', 'EMAIL']
+        deliveryAttempt:
+          type: integer
+          format: int64
+        templates:
+          type: array
+          items: "#/components/schemas/TemplateTranslation"
+    TemplateRequest:
       type: object
       properties:
         id:
