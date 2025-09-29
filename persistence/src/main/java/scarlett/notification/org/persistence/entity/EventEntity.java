@@ -2,10 +2,14 @@ package scarlett.notification.org.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -18,4 +22,7 @@ public class EventEntity extends BaseEntity {
     private String description;
     @Column(name = "schema", nullable = false)
     private String schema;
+
+    @ManyToMany(mappedBy = "events")
+    private List<TemplateEntity> templates = new ArrayList<>();
 }

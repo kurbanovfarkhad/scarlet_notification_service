@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>scarlett.notification.org</groupId>
-            <artifactId>persistance</artifactId>
+            <artifactId>persistence</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

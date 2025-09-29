@@ -71,4 +71,4 @@ The service consists of the following components:
 - Each delivery attempt is recorded in the **DeliveryAttempts** table.
 - If delivery fails, the system decreases the remaining attempts counter.
 - The system retries sending until the number of attempts reaches **0**.
-- Once attempts are exhausted, the notification status is marked as **FAILED**. 
+- Once attempts are exhausted, the notification status is marked as **FAILED**.
