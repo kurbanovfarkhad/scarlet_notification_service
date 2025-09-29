@@ -6,7 +6,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>scarlett.notification.org</groupId>
     <artifactId>scarlett_notification_service</artifactId>
@@ -19,6 +18,7 @@
         <module>integration</module>
         <module>main</module>
         <module>persistence</module>
+        <module>common</module>
     </modules>
 
     <properties>
@@ -26,7 +26,6 @@
     </properties>
 
     <dependencyManagement>
-        <dependencies>
-        </dependencies>
+
     </dependencyManagement>
 </project>
