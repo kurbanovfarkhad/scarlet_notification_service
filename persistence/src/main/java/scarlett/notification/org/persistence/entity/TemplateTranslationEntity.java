@@ -29,8 +29,4 @@ public class TemplateTranslationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "local", nullable = false)
     private LocaleEmbeddable local;
-
-    @ManyToOne
-    @JoinColumn(name = "template_id")
-    private TemplateEntity template;
 }

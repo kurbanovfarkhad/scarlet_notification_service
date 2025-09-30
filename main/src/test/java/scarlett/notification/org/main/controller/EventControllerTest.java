@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import scarlett.notification.org.main.BaseIntegrationTest;
 import scarlett.notification.org.main.model.EventModel;
-import scarlett.notification.org.main.service.EventService;
+import scarlett.notification.org.main.service.event.EventService;
 import scarlett.notification.org.persistence.entity.EventEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
 

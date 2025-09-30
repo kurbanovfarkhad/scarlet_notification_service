@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service;
+package scarlett.notification.org.main.service.event;
 
 import scarlett.notification.org.main.model.EventModel;
 

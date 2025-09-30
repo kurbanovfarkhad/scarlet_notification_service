@@ -6,5 +6,5 @@ import scarlett.notification.org.main.model.TemplateModel;
 import scarlett.notification.org.persistence.entity.EventEntity;
 import scarlett.notification.org.persistence.entity.TemplateEntity;
 
-@Mapper(componentModel = "spring", uses = {EventMapper.class})
+@Mapper(componentModel = "spring", uses = {TemplateTranslationMapper.class})
 public interface TemplateMapper extends BaseMapper<TemplateEntity, TemplateModel>{}

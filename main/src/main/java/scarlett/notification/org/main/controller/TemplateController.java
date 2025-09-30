@@ -9,34 +9,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import scarlett.notification.org.main.model.EventModel;
-import scarlett.notification.org.main.service.event.EventService;
+import scarlett.notification.org.main.model.TemplateModel;
+import scarlett.notification.org.main.service.template.TemplateService;
 
 import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@RequestMapping(value = "events")
+@RequestMapping(value = "tempaltes")
 @RestController
-public class EventController {
-    private final EventService eventService;
+public class TemplateController {
+    private final TemplateService templateService;
 
     @GetMapping
-    public List<EventModel> getEvents() {
-        return eventService.getAll();
+    public List<TemplateModel> getEvents() {
+        return templateService.getAll();
     }
 
     @GetMapping(value = "/{eventId}")
-    public EventModel getEvent(@PathVariable UUID eventId) {
-        return eventService.getById(eventId);
+    public TemplateModel getEvent(@PathVariable UUID eventId) {
+        return templateService.getById(eventId);
     }
 
     @PostMapping
-    public EventModel create(@RequestBody EventModel eventModel) {
-        return eventService.create(eventModel);
+    public TemplateModel create(@RequestBody TemplateModel eventModel) {
+        return templateService.create(eventModel);
     }
 
     @PatchMapping
-    public EventModel update(@RequestBody EventModel eventModel) {
-        return eventService.update(eventModel);
+    public TemplateModel update(@RequestBody TemplateModel eventModel) {
+        return templateService.update(eventModel);
     }
 }

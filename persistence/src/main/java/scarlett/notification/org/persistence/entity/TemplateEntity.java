@@ -28,16 +28,9 @@ import java.util.List;
 @Table(name = "notification_template")
 public class TemplateEntity extends BaseEntity {
 
-    @OneToMany(mappedBy = "template", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "template_id")
     private List<TemplateTranslationEntity> translations = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "template_event",
-            joinColumns = @JoinColumn(name = "template_id"),
-            inverseJoinColumns = @JoinColumn(name = "event_id")
-    )
-    private List<EventEntity> events = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", nullable = false)

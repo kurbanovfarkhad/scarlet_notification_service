@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service;
+package scarlett.notification.org.main.service.event;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

@@ -2,6 +2,8 @@ package scarlett.notification.org.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -23,6 +25,11 @@ public class EventEntity extends BaseEntity {
     @Column(name = "schema", nullable = false)
     private String schema;
 
-    @ManyToMany(mappedBy = "events")
+    @ManyToMany
+    @JoinTable(
+            name = "template_event",
+            joinColumns = @JoinColumn(name = "template_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
     private List<TemplateEntity> templates = new ArrayList<>();
 }
