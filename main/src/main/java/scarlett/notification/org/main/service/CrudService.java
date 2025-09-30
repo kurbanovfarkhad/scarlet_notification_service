@@ -47,7 +47,7 @@ public interface CrudService<
 
     @Override
     default List<MODEL> getAll() {
-        return getMapper().reverse(getRepository().findAll());
+        return getMapper().map(getRepository().findAll());
     }
 
     @Override

@@ -1,6 +1,5 @@
 package scarlett.notification.org.main.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,9 +10,6 @@ import scarlett.notification.org.main.mapper.BaseMapper;
 import scarlett.notification.org.main.mapper.EventMapper;
 import scarlett.notification.org.persistence.entity.EventEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
