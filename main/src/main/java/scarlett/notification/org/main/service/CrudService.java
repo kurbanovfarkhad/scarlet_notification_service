@@ -1,6 +1,7 @@
 package scarlett.notification.org.main.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 import scarlett.notification.org.common.BeanUtils;
 import scarlett.notification.org.infra.model.BaseModel;
 import scarlett.notification.org.infra.service.BaseService;
@@ -27,18 +28,19 @@ public interface CrudService<
     }
 
     @Override
-    default MODEL create(MODEL eventModel) {
-        ENTITY map = getMapper().map(eventModel);
+    default MODEL create(MODEL model) {
+        ENTITY map = getMapper().map(model);
         ENTITY save = getRepository().save(map);
         return getMapper().map(save);
     }
 
+    @Transactional
     @Override
-    default MODEL update(MODEL eventModel) {
-        var dbVal = getRepository().findById(eventModel.getId())
+    default MODEL update(MODEL model) {
+        var dbVal = getRepository().findById(model.getId())
                                    .orElseThrow(EntityNotFoundException::new);
         try {
-            getBeanUtils().copyProperties(dbVal, eventModel);
+            getBeanUtils().copyProperties(dbVal, getMapper().map(model));
         } catch (Exception e) {
             throw new RuntimeException("update failed", e);
         }

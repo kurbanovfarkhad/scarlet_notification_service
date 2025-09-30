@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class TemplateModel extends BaseModel {
     private int deliveryAttempts;
-    private OrderPriority orderPriority;
+    private OrderPriority priority;
     private List<TemplateTranslationModel> translations;
     private List<ChannelType> allowedChannel;
 }

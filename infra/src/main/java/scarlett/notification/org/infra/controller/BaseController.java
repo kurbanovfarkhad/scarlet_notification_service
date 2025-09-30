@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import scarlett.notification.org.infra.model.BaseModel;
 import scarlett.notification.org.infra.service.BaseService;
 
@@ -26,12 +27,12 @@ public interface BaseController<MODEL extends BaseModel, SERVICE extends BaseSer
     }
 
     @PostMapping
-    default MODEL create(MODEL model) {
+    default MODEL create(@RequestBody MODEL model) {
         return getService().create(model);
     }
 
     @PatchMapping
-    default MODEL update(MODEL model) {
+    default MODEL update(@RequestBody MODEL model) {
         return getService().update(model);
     }
 

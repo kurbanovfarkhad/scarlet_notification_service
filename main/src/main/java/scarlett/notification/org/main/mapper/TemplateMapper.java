@@ -5,4 +5,6 @@ import scarlett.notification.org.infra.model.TemplateModel;
 import scarlett.notification.org.persistence.entity.TemplateEntity;
 
 @Mapper(componentModel = "spring", uses = {TemplateTranslationMapper.class})
-public interface TemplateMapper extends BaseMapper<TemplateEntity, TemplateModel>{}
+public interface TemplateMapper extends BaseMapper<TemplateEntity, TemplateModel>{
+
+}
