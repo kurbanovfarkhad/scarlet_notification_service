@@ -1,9 +1,8 @@
-package scarlett.notification.org.main.model;
+package scarlett.notification.org.infra.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import scarlett.notification.org.main.model.enums.LocaleEmbeddable;
-import scarlett.notification.org.persistence.entity.basic.BaseEntity;
+import scarlett.notification.org.infra.model.enums.LocaleEmbeddable;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

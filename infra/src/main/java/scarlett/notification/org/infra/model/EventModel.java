@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.model;
+package scarlett.notification.org.infra.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

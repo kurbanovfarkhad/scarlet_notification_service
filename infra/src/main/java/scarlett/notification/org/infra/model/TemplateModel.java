@@ -1,9 +1,9 @@
-package scarlett.notification.org.main.model;
+package scarlett.notification.org.infra.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import scarlett.notification.org.main.model.enums.ChannelType;
-import scarlett.notification.org.main.model.enums.OrderPriority;
+import scarlett.notification.org.infra.model.enums.ChannelType;
+import scarlett.notification.org.infra.model.enums.OrderPriority;
 
 import java.util.List;
 

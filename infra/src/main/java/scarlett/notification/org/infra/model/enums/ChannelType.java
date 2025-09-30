@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.model.enums;
+package scarlett.notification.org.infra.model.enums;
 
 public enum ChannelType {
     SMS,

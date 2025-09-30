@@ -1,6 +1,6 @@
 package scarlett.notification.org.main.mapper;
 
-import scarlett.notification.org.main.model.BaseModel;
+import scarlett.notification.org.infra.model.BaseModel;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 
 import java.util.List;
