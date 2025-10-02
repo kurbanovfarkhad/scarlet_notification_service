@@ -2,7 +2,6 @@ package scarlett.notification.org.main.template;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import scarlett.notification.org.common.model.MessageInformation;
 import scarlett.notification.org.common.model.QueuePayload;
@@ -13,18 +12,15 @@ import scarlett.notification.org.persistence.entity.TemplateEntity;
 import scarlett.notification.org.persistence.entity.TemplateTranslationEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class TemplateEngineTest {
 
-    private EventRepository eventRepository = Mockito.mock(EventRepository.class);
+    private final EventRepository eventRepository = Mockito.mock(EventRepository.class);
 
-    private final TemplateEngine templateEngine =  new TemplateEngine(eventRepository);
+    private final TemplateEngineImpl templateEngine =  new TemplateEngineImpl(eventRepository, new TemplateExecutorImpl());
 
     @Test
     void generateMessage() {
@@ -52,7 +48,7 @@ class TemplateEngineTest {
         payload.setPhoneNumber("123123123");
         payload.setApplicationId("asd");
         payload.setEventName("event");
-        payload.setAdditionalProperties(Map.of());
+        payload.setProperties(Map.of());
         // when
         List<MessageInformation> event = templateEngine.generateMessage(ChannelType.EMAIL, payload);
 

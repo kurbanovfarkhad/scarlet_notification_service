@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Data
 public class QueuePayload {
-    private Map<String, String> additionalProperties;
+    private Map<String, String> properties;
     private String phoneNumber;
     private String email;
     private String applicationId;
