@@ -10,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
 import scarlett.notification.org.infra.model.TemplateModel;
 import scarlett.notification.org.infra.model.TemplateTranslationModel;
-import scarlett.notification.org.infra.model.enums.ChannelType;
-import scarlett.notification.org.infra.model.enums.LocaleEmbeddable;
+import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.infra.model.enums.OrderPriority;
 import scarlett.notification.org.infra.service.TemplateService;
 import scarlett.notification.org.main.BaseIntegrationTest;
@@ -55,12 +55,11 @@ public class TemplateControllerTest extends BaseIntegrationTest {
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.allowedChannel").isArray())
                .andExpect(jsonPath("$.allowedChannel").isNotEmpty())
-               .andExpect(jsonPath("$.priority").value(OrderPriority.HIGH.name()))
                .andExpect(jsonPath("$.id").exists())
                .andExpect(jsonPath("$.deliveryAttempts").value(templateModel.getDeliveryAttempts()))
                .andExpect(jsonPath("$.translations[0].name").value(templateModel.getTranslations().get(0).getName()))
                .andExpect(jsonPath("$.translations[0].body").value(templateModel.getTranslations().get(0).getBody()))
-               .andExpect(jsonPath("$.translations[0].local").value(templateModel.getTranslations().get(0).getLocal().name()))
+               .andExpect(jsonPath("$.translations[0].locale").value(templateModel.getTranslations().get(0).getLocale().name()))
                .andExpect(jsonPath("$.translations[0].subject").value(templateModel.getTranslations().get(0).getSubject()))
         ;
         List<TemplateEntity> all = templateRepository.findAll();
@@ -89,7 +88,6 @@ public class TemplateControllerTest extends BaseIntegrationTest {
                                      .orElseThrow();
         Assertions.assertEquals(templateEntity.getTranslations().size(), db.getTranslations().size());
         Assertions.assertEquals(templateEntity.getAllowedChannel().size(), db.getAllowedChannel().size());
-        Assertions.assertEquals(templateEntity.getPriority().name(), db.getPriority().name());
     }
 
     @Test
@@ -97,7 +95,6 @@ public class TemplateControllerTest extends BaseIntegrationTest {
         // given
         TemplateModel templateModel = createModel();
         TemplateModel db = templateService.create(templateModel);
-        db.setPriority(OrderPriority.LOW);
         // when
         mockMvc.perform(patch("/templates")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -111,7 +108,6 @@ public class TemplateControllerTest extends BaseIntegrationTest {
                                      .filter(e -> Objects.equals(e.getId(), db.getId()))
                                      .findFirst()
                                      .orElseThrow();
-        Assertions.assertEquals(templateEntity.getPriority().name(), db.getPriority().name());
     }
 
     private static @NotNull TemplateModel createModel() {
@@ -119,14 +115,13 @@ public class TemplateControllerTest extends BaseIntegrationTest {
         ru.setBody("ru body");
         ru.setName("ru name");
         ru.setSubject("ru subject");
-        ru.setLocal(LocaleEmbeddable.ru);
+        ru.setLocale(LocaleEmbeddable.ru);
 
         TemplateModel templateModel = new TemplateModel();
         templateModel.setAllowedChannel(List.of(ChannelType.SMS, ChannelType.PUSH));
         templateModel.setTranslations(List.of(ru));
         templateModel.setDeliveryAttempts(3);
-        templateModel.setPriority(OrderPriority.HIGH);
-
+        templateModel.setDefaultChannel(ChannelType.EMAIL);
         return templateModel;
     }
 }

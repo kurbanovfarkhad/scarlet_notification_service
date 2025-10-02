@@ -2,8 +2,7 @@ package scarlett.notification.org.infra.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import scarlett.notification.org.infra.model.enums.ChannelType;
-import scarlett.notification.org.infra.model.enums.OrderPriority;
+import scarlett.notification.org.common.model.enums.ChannelType;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @Data
 public class TemplateModel extends BaseModel {
     private int deliveryAttempts;
-    private OrderPriority priority;
     private List<TemplateTranslationModel> translations;
     private List<ChannelType> allowedChannel;
+    private ChannelType defaultChannel;
 }

@@ -1,0 +1,16 @@
+package scarlett.notification.org.common.model;
+
+import lombok.Data;
+import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
+
+import java.util.Map;
+
+@Data
+public class QueuePayload {
+    private Map<String, String> additionalProperties;
+    private String phoneNumber;
+    private String email;
+    private String applicationId;
+    private LocaleEmbeddable locale;
+    private String eventName;
+}

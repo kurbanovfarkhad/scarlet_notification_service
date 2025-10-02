@@ -2,7 +2,7 @@ package scarlett.notification.org.infra.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import scarlett.notification.org.infra.model.enums.ChannelType;
+import scarlett.notification.org.common.model.enums.ChannelType;
 
 import java.util.UUID;
 

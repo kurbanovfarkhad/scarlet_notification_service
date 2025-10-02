@@ -5,19 +5,15 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
-import scarlett.notification.org.persistence.entity.enums.ChannelType;
-import scarlett.notification.org.persistence.entity.enums.OrderPriority;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +28,16 @@ public class TemplateEntity extends BaseEntity {
     @JoinColumn(name = "template_id")
     private List<TemplateTranslationEntity> translations = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "priority", nullable = false)
-    private OrderPriority priority;
-
     @ElementCollection(targetClass = ChannelType.class, fetch = FetchType.EAGER)
     @CollectionTable(
             name = "template_allowed_channels",
             joinColumns = @JoinColumn(name = "template_id")
     )
-    @Column(name = "channel", nullable = false)
+    @Column(name = "allowed_channels", nullable = false)
     private List<ChannelType> allowedChannel;
+
+    @Column(name = "channel", nullable = false)
+    private ChannelType defaultChannel;
 
     @Column(name = "delivery_attempts", nullable = false)
     private int deliveryAttempts;

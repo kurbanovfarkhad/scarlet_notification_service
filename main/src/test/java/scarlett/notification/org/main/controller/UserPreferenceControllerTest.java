@@ -11,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import scarlett.notification.org.infra.model.EventModel;
 import scarlett.notification.org.infra.model.UserPreferenceModel;
-import scarlett.notification.org.infra.model.enums.ChannelType;
+import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.infra.service.EventService;
 import scarlett.notification.org.infra.service.UserPreferenceService;
 import scarlett.notification.org.main.BaseIntegrationTest;

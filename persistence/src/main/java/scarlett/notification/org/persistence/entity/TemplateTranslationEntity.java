@@ -4,13 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
-import scarlett.notification.org.persistence.entity.enums.LocaleEmbeddable;
+import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -27,6 +25,6 @@ public class TemplateTranslationEntity extends BaseEntity {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "local", nullable = false)
-    private LocaleEmbeddable local;
+    @Column(name = "locale", nullable = false)
+    private LocaleEmbeddable locale;
 }

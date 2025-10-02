@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
-import scarlett.notification.org.persistence.entity.enums.ChannelType;
 
 import java.util.UUID;
 

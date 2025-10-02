@@ -12,5 +12,4 @@ public class EventModel extends BaseModel {
     private String name;
     private String description;
     private String schema;
-    private List<TemplateModel> templates = new ArrayList<>();
 }
