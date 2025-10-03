@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service.serialization.avro;
+package scarlett.notification.org.main.serialization.avro;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

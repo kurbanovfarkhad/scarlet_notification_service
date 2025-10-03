@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service.serialization;
+package scarlett.notification.org.main.serialization;
 
 import scarlett.notification.org.common.model.QueuePayload;
 

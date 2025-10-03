@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import scarlett.notification.org.common.model.QueuePayload;
 import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
-import scarlett.notification.org.main.service.serialization.avro.AvroSchemaDeserializerImpl;
-import scarlett.notification.org.main.service.serialization.avro.AvroSchemaSerializerImpl;
+import scarlett.notification.org.main.serialization.avro.AvroSchemaDeserializerImpl;
+import scarlett.notification.org.main.serialization.avro.AvroSchemaSerializerImpl;
 
 import java.util.Map;
 

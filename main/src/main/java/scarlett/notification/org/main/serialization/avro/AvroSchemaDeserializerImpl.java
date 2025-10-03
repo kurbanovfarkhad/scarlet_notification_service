@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service.serialization.avro;
+package scarlett.notification.org.main.serialization.avro;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.avro.io.DatumReader;
@@ -8,7 +8,7 @@ import org.apache.avro.specific.SpecificDatumReader;
 import org.springframework.stereotype.Component;
 import scarlett.notification.org.common.model.QueuePayload;
 import scarlett.notification.org.common.model.avro.AuroQueuePayload;
-import scarlett.notification.org.main.service.serialization.SchemaDeserializer;
+import scarlett.notification.org.main.serialization.SchemaDeserializer;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
