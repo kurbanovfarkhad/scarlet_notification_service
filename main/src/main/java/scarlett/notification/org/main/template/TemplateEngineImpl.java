@@ -18,7 +18,8 @@ public class TemplateEngineImpl implements TemplateEngine {
     private final EventRepository eventRepository;
     private final TemplateExecutor templateExecutor;
 
-    public List<MessageInformation> generateMessage(ChannelType preferredChannel, QueuePayload payload) {
+    public List<MessageInformation> generateMessage(ChannelType preferredChannel, QueuePayload qpayload) {
+        QueuePayload payload = new QueuePayload();
         //вытащить событие
         Optional<EventEntity> eventEntity = eventRepository.findByName(payload.getEventName());
         if (eventEntity.isPresent()) {

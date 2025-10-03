@@ -1,11 +1,15 @@
 package scarlett.notification.org.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
 
 import java.util.Map;
 
+@ToString
 @Data
+@EqualsAndHashCode
 public class QueuePayload {
     private Map<String, String> properties;
     private String phoneNumber;
