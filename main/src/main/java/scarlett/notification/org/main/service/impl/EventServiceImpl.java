@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service;
+package scarlett.notification.org.main.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,6 +8,7 @@ import scarlett.notification.org.infra.model.EventModel;
 import scarlett.notification.org.infra.service.EventService;
 import scarlett.notification.org.main.mapper.BaseMapper;
 import scarlett.notification.org.main.mapper.EventMapper;
+import scarlett.notification.org.main.service.CrudService;
 import scarlett.notification.org.persistence.entity.EventEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
 

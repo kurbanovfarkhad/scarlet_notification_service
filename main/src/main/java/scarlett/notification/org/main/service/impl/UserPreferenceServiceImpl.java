@@ -1,4 +1,4 @@
-package scarlett.notification.org.main.service;
+package scarlett.notification.org.main.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import scarlett.notification.org.infra.model.UserPreferenceModel;
 import scarlett.notification.org.infra.service.UserPreferenceService;
 import scarlett.notification.org.main.mapper.BaseMapper;
 import scarlett.notification.org.main.mapper.UserPreferenceMapper;
+import scarlett.notification.org.main.service.CrudService;
 import scarlett.notification.org.persistence.entity.UserPreferenceEntity;
 import scarlett.notification.org.persistence.repository.UserPreferenceRepository;
 
