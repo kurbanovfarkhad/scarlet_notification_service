@@ -10,6 +10,7 @@ import scarlett.notification.org.persistence.entity.TemplateTranslationEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -30,10 +31,11 @@ public class TemplateEngineImpl implements TemplateEngine {
                         .stream()
                         .map(el -> {
                             MessageInformation.MessageInformationBuilder messageBuilder = MessageInformation.builder();
-                            ChannelType channelType =
-                                    el.getAllowedChannel().contains(preferredChannel)
-                                    ? preferredChannel
-                                    : el.getDefaultChannel();
+                            ChannelType channelType =  el.getDefaultChannel();
+                            if (Objects.nonNull(preferredChannel)
+                                    && el.getAllowedChannel().contains(preferredChannel)) {
+                                channelType = preferredChannel;
+                            }
                             //куда отправлять
                             String address = switch (channelType) {
                                 case SMS -> payload.getPhoneNumber();

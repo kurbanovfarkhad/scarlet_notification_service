@@ -11,6 +11,8 @@ import scarlett.notification.org.main.service.CrudService;
 import scarlett.notification.org.persistence.entity.UserPreferenceEntity;
 import scarlett.notification.org.persistence.repository.UserPreferenceRepository;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class UserPreferenceServiceImpl implements UserPreferenceService,
@@ -34,4 +36,9 @@ public class UserPreferenceServiceImpl implements UserPreferenceService,
         return this.beanUtils;
     }
 
+    @Override
+    public UserPreferenceModel getUserPreferences(UUID userId) {
+
+        return userPreferenceRepository.findByUserId(userId).map(mapper::map).orElse(null);
+    }
 }
