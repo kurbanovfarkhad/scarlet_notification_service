@@ -7,6 +7,7 @@
     {"name": "phoneNumber", "type": ["null","string"], "default": null},
     {"name": "email", "type": ["null","string"], "default": null},
     {"name": "applicationId", "type": ["null","string"], "default": null},
+    {"name": "userId", "type": ["null","string"], "default": null},
     {"name": "locale", "type": ["null", {
       "type": "enum",
       "name": "LocaleEmbeddable",

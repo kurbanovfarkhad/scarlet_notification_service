@@ -6,6 +6,7 @@ import lombok.ToString;
 import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
 
 import java.util.Map;
+import java.util.UUID;
 
 @ToString
 @Data
@@ -17,4 +18,5 @@ public class QueuePayload {
     private String applicationId;
     private LocaleEmbeddable locale;
     private String eventName;
+    private UUID userId;
 }
