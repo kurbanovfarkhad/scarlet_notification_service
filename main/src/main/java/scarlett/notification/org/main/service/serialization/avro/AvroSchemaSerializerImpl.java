@@ -1,16 +1,14 @@
-package scarlett.notification.org.main.service.avro;
+package scarlett.notification.org.main.service.serialization.avro;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.avro.Schema;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
-import org.apache.avro.reflect.ReflectDatumWriter;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.springframework.stereotype.Component;
 import scarlett.notification.org.common.model.QueuePayload;
 import scarlett.notification.org.common.model.avro.AuroQueuePayload;
-import scarlett.notification.org.main.service.SchemaSerializer;
+import scarlett.notification.org.main.service.serialization.SchemaSerializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
