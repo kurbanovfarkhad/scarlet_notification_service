@@ -7,8 +7,9 @@ import scarlett.notification.org.common.model.MessageInformation;
 import scarlett.notification.org.common.model.QueuePayload;
 import scarlett.notification.org.infra.model.UserPreferenceModel;
 import scarlett.notification.org.infra.service.UserPreferenceService;
-import scarlett.notification.org.main.sender.ChannelAbstractFactory;
+import scarlett.notification.org.main.sender.SendersChain;
 import scarlett.notification.org.main.serialization.SchemaDeserializer;
+import scarlett.notification.org.main.service.DeliveryDispatcher;
 import scarlett.notification.org.main.service.ProcessingService;
 import scarlett.notification.org.main.template.TemplateEngine;
 
@@ -20,7 +21,7 @@ public class ProcessingServiceImpl implements ProcessingService {
     private final SchemaDeserializer schemaDeserializer;
     private final UserPreferenceService userPreferenceService;
     private final TemplateEngine templateEngine;
-    private final ChannelAbstractFactory channelAbstractFactory;
+    private final DeliveryDispatcher deliveryDispatcher;
 
     @Transactional(readOnly = true)
     public void process(byte[] payloadBytes){
@@ -29,8 +30,8 @@ public class ProcessingServiceImpl implements ProcessingService {
         //вызвать преференсы
         UserPreferenceModel userPreferences = userPreferenceService.getUserPreferences(queuePayload.getUserId());
         //вызвать темплейт энжин
-        List<MessageInformation> messageInformation = templateEngine.generateMessage(userPreferences.getDefaultChannelType(), queuePayload);
+        List<MessageInformation> messageInformations = templateEngine.generateMessage(userPreferences.getDefaultChannelType(), queuePayload);
         //вызвать отправку сообщения
-
+        deliveryDispatcher.assembleChain(messageInformations).forEach(SendersChain::doChain);
     }
 }

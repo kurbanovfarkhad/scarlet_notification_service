@@ -1,6 +1,7 @@
 package scarlett.notification.org.main.template;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import scarlett.notification.org.common.model.MessageInformation;
 import scarlett.notification.org.common.model.QueuePayload;
@@ -30,29 +31,43 @@ public class TemplateEngineImpl implements TemplateEngine {
             return event.getTemplates()
                         .stream()
                         .map(el -> {
-                            MessageInformation.MessageInformationBuilder messageBuilder = MessageInformation.builder();
-                            ChannelType channelType =  el.getDefaultChannel();
-                            if (Objects.nonNull(preferredChannel)
-                                    && el.getAllowedChannel().contains(preferredChannel)) {
-                                channelType = preferredChannel;
-                            }
-                            //куда отправлять
-                            String address = switch (channelType) {
-                                case SMS -> payload.getPhoneNumber();
-                                case PUSH -> payload.getApplicationId();
-                                case EMAIL -> payload.getEmail();
-                            };
                             TemplateTranslationEntity templateTranslation = el.getTranslations()
                                                                               .stream()
                                                                               .filter(item -> item.getLocale()
                                                                                                   .equals(payload.getLocale()))
                                                                               .findAny()
                                                                               .orElseThrow();
-                            messageBuilder.channelType(channelType);
-                            messageBuilder.address(address);
+
+                            MessageInformation.MessageInformationBuilder messageBuilder = MessageInformation.builder();
                             // что отправлять
                             messageBuilder.body(templateExecutor.execute(payload.getProperties(), templateTranslation.getBody()));
                             messageBuilder.subject(templateExecutor.execute(payload.getProperties(), templateTranslation.getSubject()));
+                            //
+                            ChannelType channelType =  el.getDefaultChannel();
+                            if (Objects.nonNull(preferredChannel)
+                                    && el.getAllowedChannel().contains(preferredChannel)) {
+                                channelType = preferredChannel;
+                            }
+
+                            // fallback стратегия
+                            ChannelType fallbackChannel = channelType.getFallbackChannel();
+                            if (Objects.nonNull(fallbackChannel)) {
+                                messageBuilder.fallback(messageBuilder
+                                                                .address(switch (fallbackChannel) {
+                                                                    case SMS -> payload.getPhoneNumber();
+                                                                    case PUSH -> payload.getApplicationId();
+                                                                    case EMAIL -> payload.getEmail();
+                                                                })
+                                                                .channelType(fallbackChannel)
+                                                                .build());
+                            }
+
+                            messageBuilder.channelType(channelType);
+                            messageBuilder.address(switch (channelType) {
+                                case SMS -> payload.getPhoneNumber();
+                                case PUSH -> payload.getApplicationId();
+                                case EMAIL -> payload.getEmail();
+                            });
 
                             return messageBuilder.build();
                         })
