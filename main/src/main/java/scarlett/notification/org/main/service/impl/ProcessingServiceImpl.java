@@ -30,8 +30,8 @@ public class ProcessingServiceImpl implements ProcessingService {
         //вызвать преференсы
         UserPreferenceModel userPreferences = userPreferenceService.getUserPreferences(queuePayload.getUserId());
         //вызвать темплейт энжин
-        List<MessageInformation> messageInformations = templateEngine.generateMessage(userPreferences.getDefaultChannelType(), queuePayload);
+        List<MessageInformation> messageInformation = templateEngine.generateMessage(userPreferences.getDefaultChannelType(), queuePayload);
         //вызвать отправку сообщения
-        deliveryDispatcher.assembleChain(messageInformations).forEach(SendersChain::doChain);
+        deliveryDispatcher.assembleChain(messageInformation).forEach(SendersChain::doChain);
     }
 }
