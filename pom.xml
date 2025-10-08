@@ -15,9 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>integration</module>
-        <module>main</module>
-        <module>persistence</module>
+        <module>application</module>
         <module>common</module>
         <module>infra</module>
     </modules>
@@ -27,7 +25,13 @@
     </properties>
 
     <dependencyManagement>
-
+        <dependencies>
+            <dependency>
+                <groupId>scarlett.notification.org</groupId>
+                <artifactId>common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>
