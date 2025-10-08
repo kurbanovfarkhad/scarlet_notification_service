@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Notification Service API
+  version: 1.0.0
+  description: REST API for managing templates and notifications
+servers:
+  - url: https://localhost:8080/
+paths:
+  /templates:
+    get:
+      summary: get all template
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TemplateResponse"
+    post:
+      summary: Create new Template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplateRequest"
+      responses:
+        "201":
+          description: Template
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+  /templates/{templateId}:
+    patch:
+      summary: Update templates
+      parameters:
+        - name: templateId
+          in: path
+          description: template ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplateRequest"
+      responses:
+        "201":
+          description: Template
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+
+    get:
+      summary: Get Template by id
+      parameters:
+        - name: TemplateId
+          in: path
+          description: Template ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: Template
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+components:
+  schemas:
+    TemplateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        businessEvent:
+          type: object
+          schema:
+            $ref: "/event_openapi.yml/#/components/schemas/BusinessEventResponse"
+        priority:
+          type: string
+          enums: [ 'HIGH', 'LOW' ]
+        defaultChannelType:
+          type: array
+          enums: [ 'SMS', 'PUSH', 'EMAIL' ]
+        deliveryAttempt:
+          type: integer
+          format: int64
+        templates:
+          type: array
+          items: "#/components/schemas/TemplateTranslation"
+    TemplateRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        businessEventId:
+          type: string
+          format: uuid
+        priority:
+          type: string
+          enums: [ 'HIGH', 'LOW' ]
+        defaultChannelType:
+          type: array
+          enums: [ 'SMS', 'PUSH', 'EMAIL' ]
+        deliveryAttempt:
+          type: integer
+          format: int64
+        templates:
+          type: array
+          items: "#/components/schemas/TemplateTranslation"
+    TemplateTranslation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        body:
+          type: string
+        subject:
+          type: string
+        local:
+          type: string

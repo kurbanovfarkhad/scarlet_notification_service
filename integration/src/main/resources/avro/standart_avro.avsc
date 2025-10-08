@@ -1,0 +1,69 @@
+{
+  "type": "record",
+  "name": "AuroQueuePayload",
+  "namespace": "scarlett.notification.org.common.model.avro",
+  "fields": [
+    {
+      "name": "properties",
+      "type": {
+        "type": "map",
+        "values": "string"
+      }
+    },
+    {
+      "name": "phoneNumber",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "email",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "applicationId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "userId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "locale",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "LocaleEmbeddable",
+          "symbols": [
+            "kz",
+            "ru"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "eventName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}
