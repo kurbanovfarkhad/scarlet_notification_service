@@ -36,7 +36,8 @@ public class NotificationServiceImpl implements NotificationService {
         deliveryAttempt.setAttempt(messageInformation.getRemainingAttempts());
         deliveryAttempt.setError(result.getError());
         deliveryAttempt.setProviderResponse(result.getResponse());
-        ;
+        notification.setSubject(messageInformation.getSubject());
+        notification.setBody(messageInformation.getBody());
         notification.addDeliveryAttempt(deliveryAttempt);
         return deliveryAttempt;
     }

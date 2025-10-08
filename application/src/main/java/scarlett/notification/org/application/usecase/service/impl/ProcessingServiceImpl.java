@@ -25,10 +25,6 @@ public class ProcessingServiceImpl implements ProcessingService {
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
     @Override
     public void process(QueuePayload payload) {
-        //TODO create notification
-        // subject заполнятся позже
-        // body заполнится позже
-
         //вызвать преференсы
         UserPreferenceModel userPreferences = userPreferenceService.getUserPreferences(payload.getUserId());
         //вызвать темплейт энжин
