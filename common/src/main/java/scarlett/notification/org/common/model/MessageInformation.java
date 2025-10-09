@@ -2,11 +2,13 @@ package scarlett.notification.org.common.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.common.model.enums.Priority;
 
 import java.util.UUID;
 
+@ToString
 @Data
 @Builder
 public class MessageInformation {

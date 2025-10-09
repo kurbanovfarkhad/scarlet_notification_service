@@ -1,6 +1,7 @@
 package scarlett.notification.org.application.usecase.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ public class ProcessingServiceImpl implements ProcessingService {
     private final TemplateEngine templateEngine;
     private final DeliveryDispatcher deliveryDispatcher;
 
+    @Async
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
     @Override
     public void process(QueuePayload payload) {
