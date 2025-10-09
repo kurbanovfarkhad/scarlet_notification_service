@@ -2,9 +2,9 @@ package scarlett.notification.org.application.usecase.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
-import scarlett.notification.org.application.crud.mapper.BaseMapper;
-import scarlett.notification.org.application.crud.model.BaseModel;
-import scarlett.notification.org.application.crud.service.BaseService;
+import scarlett.notification.org.application.presentation.crud.mapper.BaseMapper;
+import scarlett.notification.org.application.presentation.crud.model.BaseModel;
+import scarlett.notification.org.application.presentation.crud.service.BaseService;
 import scarlett.notification.org.common.BeanUtils;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 import scarlett.notification.org.persistence.repository.BaseCrudRepository;

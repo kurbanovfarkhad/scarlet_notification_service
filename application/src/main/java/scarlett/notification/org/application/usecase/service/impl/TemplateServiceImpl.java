@@ -2,10 +2,10 @@ package scarlett.notification.org.application.usecase.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import scarlett.notification.org.application.crud.mapper.BaseMapper;
-import scarlett.notification.org.application.crud.mapper.TemplateMapper;
-import scarlett.notification.org.application.crud.model.TemplateModel;
-import scarlett.notification.org.application.crud.service.TemplateService;
+import scarlett.notification.org.application.presentation.crud.mapper.BaseMapper;
+import scarlett.notification.org.application.presentation.crud.mapper.TemplateMapper;
+import scarlett.notification.org.application.presentation.crud.model.TemplateModel;
+import scarlett.notification.org.application.presentation.crud.service.TemplateService;
 import scarlett.notification.org.application.usecase.service.CrudService;
 import scarlett.notification.org.common.BeanUtils;
 import scarlett.notification.org.persistence.entity.TemplateEntity;

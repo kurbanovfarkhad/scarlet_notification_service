@@ -10,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import scarlett.notification.org.application.BaseIntegrationTest;
-import scarlett.notification.org.application.crud.model.UserPreferenceModel;
-import scarlett.notification.org.application.crud.service.UserPreferenceService;
+import scarlett.notification.org.application.presentation.crud.model.UserPreferenceModel;
+import scarlett.notification.org.application.presentation.crud.service.UserPreferenceService;
 import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.persistence.entity.UserPreferenceEntity;
 import scarlett.notification.org.persistence.repository.UserPreferenceRepository;
@@ -87,8 +87,8 @@ public class UserPreferenceControllerTest extends BaseIntegrationTest {
                                          .filter(e -> Objects.equals(e.getId(), db.getId()))
                                          .findFirst()
                                          .orElseThrow();
-        Assertions.assertEquals(entity.getUserId(), entity.getUserId());
-        Assertions.assertEquals(entity.getDefaultChannelType().name(), entity.getDefaultChannelType().name());
+        Assertions.assertEquals(model.getUserId(), entity.getUserId());
+        Assertions.assertEquals(model.getDefaultChannelType().name(), entity.getDefaultChannelType().name());
     }
 
     @Test

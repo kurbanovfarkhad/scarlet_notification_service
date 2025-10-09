@@ -3,8 +3,8 @@ package scarlett.notification.org.application.presentation.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import scarlett.notification.org.application.crud.model.EventModel;
-import scarlett.notification.org.application.crud.service.EventService;
+import scarlett.notification.org.application.presentation.crud.model.EventModel;
+import scarlett.notification.org.application.presentation.crud.service.EventService;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "events")

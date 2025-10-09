@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import scarlett.notification.org.application.crud.model.BaseModel;
-import scarlett.notification.org.application.crud.service.BaseService;
+import scarlett.notification.org.application.presentation.crud.model.BaseModel;
+import scarlett.notification.org.application.presentation.crud.service.BaseService;
 
 import java.util.List;
 import java.util.UUID;

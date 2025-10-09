@@ -10,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import scarlett.notification.org.application.BaseIntegrationTest;
-import scarlett.notification.org.application.crud.model.EventModel;
-import scarlett.notification.org.application.crud.service.EventService;
+import scarlett.notification.org.application.presentation.crud.model.EventModel;
+import scarlett.notification.org.application.presentation.crud.service.EventService;
 import scarlett.notification.org.common.model.enums.SerializationType;
 import scarlett.notification.org.persistence.entity.EventEntity;
 import scarlett.notification.org.persistence.repository.EventRepository;
@@ -82,14 +82,14 @@ public class EventControllerTest extends BaseIntegrationTest {
                .andExpect(status().isOk())
         ;
         List<EventEntity> all = eventRepository.findAll();
-        Assertions.assertTrue(all.size() > 0);
+        Assertions.assertFalse(all.isEmpty());
         EventEntity eventEntity = all.stream()
                                      .filter(e -> Objects.equals(e.getId(), db.getId()))
                                      .findFirst()
                                      .orElseThrow();
-        Assertions.assertEquals(eventEntity.getName(), eventEntity.getName());
-        Assertions.assertEquals(eventEntity.getDescription(), eventEntity.getDescription());
-        Assertions.assertEquals(eventEntity.getSchemaType(), eventEntity.getSchemaType());
+        Assertions.assertEquals(eventModel.getName(), eventEntity.getName());
+        Assertions.assertEquals(eventModel.getDescription(), eventEntity.getDescription());
+        Assertions.assertEquals(eventModel.getSchemaType(), eventEntity.getSchemaType());
     }
 
     @Test
@@ -109,7 +109,7 @@ public class EventControllerTest extends BaseIntegrationTest {
                .andExpect(jsonPath("$.description").value(db.getDescription()))
         ;
         List<EventEntity> all = eventRepository.findAll();
-        Assertions.assertTrue(all.size() > 0);
+        Assertions.assertFalse(all.isEmpty());
         EventEntity eventEntity = all.stream()
                                      .filter(e -> Objects.equals(e.getId(), db.getId()))
                                      .findFirst()

@@ -1,7 +1,6 @@
-package scarlett.notification.org.application.crud.mapper;
+package scarlett.notification.org.application.presentation.crud.mapper;
 
-import org.mapstruct.MappingTarget;
-import scarlett.notification.org.application.crud.model.BaseModel;
+import scarlett.notification.org.application.presentation.crud.model.BaseModel;
 import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 
 import java.util.List;
@@ -17,8 +16,4 @@ public interface BaseMapper<ENTITY extends BaseEntity, MODEL extends BaseModel> 
                        .map(this::map)
                        .collect(Collectors.toList());
     }
-
-    void updateFromModel(
-            MODEL model,
-            @MappingTarget ENTITY entity);
 }

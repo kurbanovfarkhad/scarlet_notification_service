@@ -4,8 +4,8 @@ package scarlett.notification.org.application.presentation.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import scarlett.notification.org.application.crud.model.UserPreferenceModel;
-import scarlett.notification.org.application.crud.service.UserPreferenceService;
+import scarlett.notification.org.application.presentation.crud.model.UserPreferenceModel;
+import scarlett.notification.org.application.presentation.crud.service.UserPreferenceService;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "preferences")

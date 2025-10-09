@@ -11,9 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import scarlett.notification.org.application.BaseIntegrationTest;
-import scarlett.notification.org.application.crud.model.TemplateModel;
-import scarlett.notification.org.application.crud.model.TemplateTranslationModel;
-import scarlett.notification.org.application.crud.service.TemplateService;
+import scarlett.notification.org.application.presentation.crud.model.TemplateModel;
+import scarlett.notification.org.application.presentation.crud.model.TemplateTranslationModel;
+import scarlett.notification.org.application.presentation.crud.service.TemplateService;
 import scarlett.notification.org.common.model.enums.ChannelType;
 import scarlett.notification.org.common.model.enums.LocaleEmbeddable;
 import scarlett.notification.org.common.model.enums.Priority;
@@ -108,6 +108,7 @@ public class TemplateControllerTest extends BaseIntegrationTest {
         Assertions.assertEquals(templateEntity.getAllowedChannel().size(), db.getAllowedChannel().size());
     }
 
+    @Transactional
     @Test
     void update() throws Exception {
         // given
@@ -121,10 +122,11 @@ public class TemplateControllerTest extends BaseIntegrationTest {
                .andExpect(status().isOk())
         ;
         List<TemplateEntity> all = templateRepository.findAll();
-        Assertions.assertTrue(all.size() > 0);
+        Assertions.assertFalse(all.isEmpty());
         TemplateEntity templateEntity = all.stream()
                                            .filter(e -> Objects.equals(e.getId(), db.getId()))
                                            .findFirst()
                                            .orElseThrow();
+        Assertions.assertEquals(templateEntity.getTranslations().size(), db.getTranslations().size());
     }
 }

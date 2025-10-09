@@ -1,4 +1,4 @@
-package scarlett.notification.org.application.crud.model;
+package scarlett.notification.org.application.presentation.crud.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

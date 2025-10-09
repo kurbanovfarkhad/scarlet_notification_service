@@ -1,7 +1,7 @@
-package scarlett.notification.org.application.crud.service;
+package scarlett.notification.org.application.presentation.crud.service;
 
 
-import scarlett.notification.org.application.crud.model.UserPreferenceModel;
+import scarlett.notification.org.application.presentation.crud.model.UserPreferenceModel;
 
 import java.util.UUID;
 

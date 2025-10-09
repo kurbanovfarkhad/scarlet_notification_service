@@ -3,8 +3,8 @@ package scarlett.notification.org.application.service.impl;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mockito;
-import scarlett.notification.org.application.crud.mapper.UserPreferenceMapper;
-import scarlett.notification.org.application.crud.service.UserPreferenceService;
+import scarlett.notification.org.application.presentation.crud.mapper.UserPreferenceMapper;
+import scarlett.notification.org.application.presentation.crud.service.UserPreferenceService;
 import scarlett.notification.org.application.usecase.sender.DecoratedSenderAdapter;
 import scarlett.notification.org.application.usecase.sender.IntegrationResult;
 import scarlett.notification.org.application.usecase.sender.SenderAdapter;
@@ -64,7 +64,6 @@ class ProcessingServiceImplTest {
     public void test() {
         //given
         QueuePayload queuePayload = cretePayload();
-        byte[] bytes = schemaSerializer.serialize(queuePayload);
         //  eventEntity
         EventEntity eventEntity = new EventEntity();
         eventEntity.setName("event");
