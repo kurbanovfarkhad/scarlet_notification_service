@@ -19,10 +19,8 @@ public class DeliveryAttemptEntity extends BaseEntity {
     private int attempt;
     @Column(name = "provider_response", nullable = false)
     private String providerResponse;
-    @Column(name = "error", nullable = false)
+    @Column(name = "error")
     private String error;
-    @Column(name = "payload", nullable = false)
-    private String payload;
     @Enumerated(EnumType.STRING)
     @Column(name = "channel_type", nullable = false)
     private ChannelType channelType;

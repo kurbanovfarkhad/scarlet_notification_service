@@ -7,6 +7,8 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -44,4 +46,11 @@ public class TemplateEntity extends BaseEntity {
 
     @Column(name = "priority", nullable = false)
     private Priority priority;
+
+    @ManyToMany
+    @JoinTable(
+            name = "template_event",
+            joinColumns = @JoinColumn(name = "event_id")
+    )
+    private List<EventEntity> events = new ArrayList<>();
 }

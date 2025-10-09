@@ -11,7 +11,7 @@ import scarlett.notification.org.common.model.MessageInformation;
 import scarlett.notification.org.integration.provider.push.PushProvider;
 
 @RequiredArgsConstructor
-@Component
+@Component("PUSH")
 @Qualifier("PUSH")
 public class PushSenderAdapterImpl implements SenderAdapter {
 
@@ -22,6 +22,9 @@ public class PushSenderAdapterImpl implements SenderAdapter {
     public IntegrationResult send(MessageInformation messageInformation) {
         IntegrationResult o = null;
         provider.send();
+        o = new IntegrationResult();
+        o.setSuccess(Boolean.TRUE);
+        o.setResponse("asdf");
         return o;
     }
 }

@@ -18,6 +18,8 @@ import scarlett.notification.org.integration.serialization.SerializerFactory;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Component
@@ -45,6 +47,7 @@ public class DynamicMessageConverter implements RecordMessageConverter {
 
             return MessageBuilder
                     .withPayload(obj)
+                    .copyHeaders(toHeaderMap(headers))
                     .build();
 
         } catch (Exception e) {
@@ -57,5 +60,13 @@ public class DynamicMessageConverter implements RecordMessageConverter {
             Message<?> message,
             String defaultTopic) {
         throw new UnsupportedOperationException();
+    }
+
+    private Map<String, Object> toHeaderMap(Headers headers) {
+        Map<String, Object> map = new HashMap<>();
+        for (Header header : headers) {
+            map.put(header.key(), new String(header.value(), StandardCharsets.UTF_8));
+        }
+        return map;
     }
 }

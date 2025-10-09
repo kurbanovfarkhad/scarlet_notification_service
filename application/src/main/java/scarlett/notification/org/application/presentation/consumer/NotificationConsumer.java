@@ -27,6 +27,7 @@ public class NotificationConsumer {
         log.info("[CONSUMER] spotted event, payload {}, idempotencyKey {} and source {}", payload, idempotencyKey,
                  source);
         try {
+            payload.setEventId(idempotencyKey);
             orchestration.handle(payload, source, idempotencyKey);
             log.info("[CONSUMER] Successfully processed message, payload {}, idempotencyKey {} and source {}", payload,
                      idempotencyKey, source);

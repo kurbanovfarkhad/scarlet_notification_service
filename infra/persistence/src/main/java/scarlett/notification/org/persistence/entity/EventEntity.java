@@ -4,8 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -29,11 +27,7 @@ public class EventEntity extends BaseEntity {
     @Column(name = "schema_type", nullable = false)
     private SerializationType schemaType;
 
-    @ManyToMany
-    @JoinTable(
-            name = "template_event",
-            joinColumns = @JoinColumn(name = "event_id")
-    )
+    @ManyToMany(mappedBy = "events")
     private List<TemplateEntity> templates = new ArrayList<>();
 }
 

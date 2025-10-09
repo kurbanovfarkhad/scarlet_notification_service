@@ -9,7 +9,7 @@ import scarlett.notification.org.common.model.MessageInformation;
 import scarlett.notification.org.integration.provider.sms.SmsProvider;
 
 @RequiredArgsConstructor
-@Component
+@Component("SMS")
 @Qualifier("SMS")
 public class SmsSenderAdapterImpl implements SenderAdapter {
 

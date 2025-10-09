@@ -1,5 +1,6 @@
 package scarlett.notification.org.application.usecase.service.impl;
 
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Service
 public class NotificationServiceImpl implements NotificationService {
     private final NotificationRepository notificationRepository;
+    private final EntityManager entityManager;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
@@ -38,11 +40,14 @@ public class NotificationServiceImpl implements NotificationService {
         DeliveryAttemptEntity deliveryAttempt = new DeliveryAttemptEntity();
         deliveryAttempt.setAttempt(messageInformation.getRemainingAttempts());
         deliveryAttempt.setError(result.getError());
+        deliveryAttempt.setChannelType(messageInformation.getChannelType());
         deliveryAttempt.setProviderResponse(result.getResponse());
         notification.setSubject(messageInformation.getSubject());
         notification.setBody(messageInformation.getBody());
         notification.addDeliveryAttempt(deliveryAttempt);
         notification.setStatus(result.isSuccess() ? DeliveryStatus.DELIVERED : DeliveryStatus.FAILED);
+        entityManager.persist(deliveryAttempt);
+        notificationRepository.save(notification);
         return deliveryAttempt;
     }
 
