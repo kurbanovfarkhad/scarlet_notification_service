@@ -11,7 +11,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -26,6 +26,10 @@ spring:
     listener:
       ack-mode: manual
       concurrency: 3
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
 
 notification:
   topic: quickstart-events
+

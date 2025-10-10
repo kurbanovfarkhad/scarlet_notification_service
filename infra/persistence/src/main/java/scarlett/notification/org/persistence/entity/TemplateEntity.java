@@ -50,7 +50,8 @@ public class TemplateEntity extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "template_event",
-            joinColumns = @JoinColumn(name = "event_id")
+            joinColumns = @JoinColumn(name = "template_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
     )
     private List<EventEntity> events = new ArrayList<>();
 }
