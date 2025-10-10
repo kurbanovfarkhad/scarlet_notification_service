@@ -30,7 +30,7 @@ public class NotificationEntity extends BaseEntity {
     @Embedded
     private Recipient recipient;
 
-    @Column(name = "event_id", columnDefinition = "uuid", nullable = false)
+    @Column(name = "event_id", columnDefinition = "uuid", nullable = false, unique = true)
     private UUID eventId;
 
     @Column(name = "body", columnDefinition = "TEXT")

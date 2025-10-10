@@ -17,6 +17,6 @@ import java.util.UUID;
 public class UserPreferenceEntity extends BaseEntity {
     @Column(name = "default_channel_type", nullable = false)
     private ChannelType defaultChannelType;
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = false, unique = true)
     private UUID userId;
 }

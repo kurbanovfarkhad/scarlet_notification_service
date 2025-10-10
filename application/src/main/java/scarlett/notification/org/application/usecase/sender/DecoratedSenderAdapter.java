@@ -17,7 +17,6 @@ public class DecoratedSenderAdapter {
             IntegrationResult send = senderAdapter.send(messageInformation);
             notificationService.recordingAttempt(messageInformation, send);
             return send;
-
         } catch (Exception e) {
             throw new IllegalStateException("Exception occurred while sending notification", e);
         }

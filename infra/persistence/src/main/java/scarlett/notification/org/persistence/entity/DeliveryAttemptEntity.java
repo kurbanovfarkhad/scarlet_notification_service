@@ -17,7 +17,7 @@ import scarlett.notification.org.persistence.entity.basic.BaseEntity;
 public class DeliveryAttemptEntity extends BaseEntity {
     @Column(name = "attempt", nullable = false)
     private int attempt;
-    @Column(name = "provider_response", nullable = false)
+    @Column(name = "provider_response")
     private String providerResponse;
     @Column(name = "error")
     private String error;

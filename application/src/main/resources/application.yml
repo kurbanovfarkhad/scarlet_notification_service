@@ -29,6 +29,11 @@ spring:
   flyway:
     locations: classpath:db/migration
     enabled: true
+    default-schema: migration
+    schemas:
+      - public
+      - migration
+    table: flyway_schema_history
 
 notification:
   topic: quickstart-events

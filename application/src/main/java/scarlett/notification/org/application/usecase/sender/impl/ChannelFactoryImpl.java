@@ -18,6 +18,9 @@ public class ChannelFactoryImpl implements ChannelFactory {
     @Override
     public SenderAdapter getSenderAdapter(ChannelType channelType) {
         SenderAdapter senderAdapter = adapters.get(channelType.name());
+        if (senderAdapter == null) {
+            throw new IllegalArgumentException("unknown channel type: " + channelType.name());
+        }
         return messageInformation -> decoratedSenderAdapter.send(messageInformation, senderAdapter);
     }
 }
