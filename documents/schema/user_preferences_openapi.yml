@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: Notification Service API
+  version: 1.0.0
+  description: REST API for managing user preferences
+servers:
+  - url: https://localhost:8080/
+paths:
+  /preferences:
+    post:
+      summary: Create new preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPreference"
+      responses:
+        "201":
+          description: preference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPreference"
+  /preferences/{preferenceId}:
+    patch:
+      summary: Update preference
+      parameters:
+        - name: preferenceId
+          in: path
+          description: preference ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPreference"
+      responses:
+        "201":
+          description: preference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPreference"
+    delete:
+      summary: delete preference
+      parameters:
+        - name: preferenceId
+          in: path
+          description: preference ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: preference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPreference"
+components:
+  schemas:
+    UserPreference:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          uuid: uuid
+        channelType:
+          type: string
+          enums: [ 'SMS','PUSH' ]

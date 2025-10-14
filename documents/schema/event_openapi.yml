@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Notification Service API
+  version: 1.0.0
+  description: REST API for managing templates and notifications
+servers:
+  - url: https://localhost:8080/
+paths:
+  /events:
+    get:
+      summary: get all events
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BusinessEventResponse"
+    post:
+      summary: Create new event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessEventRequest"
+      responses:
+        "201":
+          description: Event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessEventResponse"
+  /events/{eventId}:
+    patch:
+      summary: Update event
+      parameters:
+        - name: eventId
+          in: path
+          description: event ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessEventRequest"
+      responses:
+        "201":
+          description: Event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessEventResponse"
+    get:
+      summary: Get event by id
+      parameters:
+        - name: eventId
+          in: path
+          description: event ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: Event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessEventResponse"
+    delete:
+      summary: Get event by id
+      parameters:
+        - name: eventId
+          in: path
+          description: event ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: Event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessEventResponse"
+components:
+  schemas:
+    BusinessEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        schema:
+          type: string
+        description:
+          type: string
+    BusinessEventRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        schema:
+          type: string
+        description:
+          type: string

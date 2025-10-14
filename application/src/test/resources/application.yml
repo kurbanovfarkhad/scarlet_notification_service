@@ -1,0 +1,40 @@
+spring.application.name: scarlett_notification_service
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scarlett_notification
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+    hibernate:
+      ddl-auto: create-drop
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: manual
+      concurrency: 3
+  flyway:
+    locations: classpath:db/migration
+    enabled: false
+    default-schema: migration
+    schemas:
+      - public
+      - migration
+    table: flyway_schema_history
+
+notification:
+  topic: quickstart-events
+
