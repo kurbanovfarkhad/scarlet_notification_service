@@ -7,7 +7,6 @@ import scarlett.notification.org.application.usecase.sender.SendersChain;
 import scarlett.notification.org.common.model.QueuePayload;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -18,8 +17,8 @@ public class NotificationOrchestrator {
 
     public void handle(
             QueuePayload payload,
-            String source,
-            UUID idempotencyKey) {
+            String source) {
+        var idempotencyKey = payload.getEventId();
         log.info("[HANDLE] Started processing message | source={} | idempotencyKey={} | payloadType={}",
                  source, idempotencyKey, payload != null ? payload.getClass().getSimpleName() : "null");
         notificationService.createNotification(payload, source, idempotencyKey);

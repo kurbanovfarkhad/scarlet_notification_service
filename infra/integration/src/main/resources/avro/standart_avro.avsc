@@ -64,6 +64,14 @@
         "string"
       ],
       "default": null
+    },
+    {
+      "name": "eventId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
     }
   ]
 }

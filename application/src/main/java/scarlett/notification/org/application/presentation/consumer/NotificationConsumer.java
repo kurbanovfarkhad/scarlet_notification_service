@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import scarlett.notification.org.application.usecase.service.NotificationOrchestrator;
 import scarlett.notification.org.common.model.QueuePayload;
 
-import java.util.UUID;
-
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -22,13 +20,12 @@ public class NotificationConsumer {
     public void handler(
             QueuePayload payload,
             @Header("source") String source,
-            @Header("idempotency-key") UUID idempotencyKey,
             Acknowledgment ack) {
+        var idempotencyKey = payload.getEventId();
         log.info("[CONSUMER] spotted event, payload {}, idempotencyKey {} and source {}", payload, idempotencyKey,
                  source);
         try {
-            payload.setEventId(idempotencyKey);
-            orchestration.handle(payload, source, idempotencyKey);
+            orchestration.handle(payload, source);
             log.info("[CONSUMER] Successfully processed message, payload {}, idempotencyKey {} and source {}", payload,
                      idempotencyKey, source);
             ack.acknowledge();

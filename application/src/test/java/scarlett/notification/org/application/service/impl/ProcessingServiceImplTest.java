@@ -8,7 +8,6 @@ import scarlett.notification.org.application.presentation.crud.service.UserPrefe
 import scarlett.notification.org.application.presentation.crud.service.impl.UserPreferenceServiceImpl;
 import scarlett.notification.org.application.usecase.IntegrationResult;
 import scarlett.notification.org.application.usecase.sender.SenderAdapter;
-import scarlett.notification.org.application.usecase.sender.impl.ChannelFactoryImpl;
 import scarlett.notification.org.application.usecase.sender.impl.ProxySenderAdapter;
 import scarlett.notification.org.application.usecase.sender.impl.PushSenderAdapterImpl;
 import scarlett.notification.org.application.usecase.sender.impl.SmsSenderAdapterImpl;
@@ -52,7 +51,7 @@ class ProcessingServiceImplTest {
                                                                                                       UserPreferenceMapper.class));
     private final TemplateEngine templateEngine = new TemplateEngineImpl(eventRepository, new TemplateExecutorImpl());
     private final DeliveryDispatcher deliveryDispatcher = new DeliveryDispatcherImpl(
-            new ChannelFactoryImpl(Map.of("SMS", smsSender, "PUSH", pushSender)));
+            proxy);
 
     private final ProcessingServiceImpl service = new ProcessingServiceImpl(userPreferenceService,
                                                                             templateEngine, deliveryDispatcher);

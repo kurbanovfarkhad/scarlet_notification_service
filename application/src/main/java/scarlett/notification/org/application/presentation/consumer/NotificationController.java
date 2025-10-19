@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import scarlett.notification.org.application.usecase.service.NotificationOrchestrator;
 import scarlett.notification.org.common.model.QueuePayload;
 
-import java.util.UUID;
-
 @RequiredArgsConstructor
 @RequestMapping(value = "notifications")
 @RestController
@@ -21,9 +19,7 @@ public class NotificationController {
     public void sendNotification(
             @RequestBody
             QueuePayload queuePayload,
-            @Header(value = "source") String source,
-            @Header(value = "idempotency_key") UUID idempotencyKey) {
-        queuePayload.setEventId(idempotencyKey);
-        orchestration.handle(queuePayload, source, idempotencyKey);
+            @Header(value = "source") String source) {
+        orchestration.handle(queuePayload, source);
     }
 }

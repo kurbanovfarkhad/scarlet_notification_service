@@ -1,4 +1,4 @@
-package scarlett.notification.org.application.presentation.controller;
+package scarlett.notification.org.application.presentation.crud.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -9,7 +9,7 @@ import java.util.Objects;
 @Data
 public class SendersChain implements Comparable<SendersChain> {
     private SendersChain next;
-    private ChannelFactory current;
+    private SenderAdapter current;
     private MessageInformation messageInformation;
 
     public SendersChain next() {
@@ -18,8 +18,7 @@ public class SendersChain implements Comparable<SendersChain> {
 
     public void doChain() {
         // отправить
-        IntegrationResult result = current.getSenderAdapter(messageInformation.getChannelType())
-                                          .send(this.messageInformation);
+        IntegrationResult result = current.send(messageInformation);
         if (Objects.nonNull(result) && !result.isSuccess()) {
             this.next().doChain();
         }

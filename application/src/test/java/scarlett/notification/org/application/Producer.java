@@ -97,7 +97,8 @@ public class Producer {
         payload.setProperties(Map.of("message", "PIZDA", "title", "VOLOSATAYA"));
         payload.setApplicationId("console");
         payload.setEmail("er@er.er");
-        payload.setEventName("test");
+        payload.setEventName("TEST_EVENT");
+        payload.setEventId(UUID.randomUUID());
         payload.setPhoneNumber("77022573825");
         payload.setUserId(UUID.fromString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"));
         payload.setLocale(LocaleEmbeddable.ru);

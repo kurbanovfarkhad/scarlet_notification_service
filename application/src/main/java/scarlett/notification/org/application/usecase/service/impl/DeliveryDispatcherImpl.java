@@ -2,7 +2,7 @@ package scarlett.notification.org.application.usecase.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import scarlett.notification.org.application.usecase.sender.ChannelFactory;
+import scarlett.notification.org.application.usecase.sender.SenderAdapter;
 import scarlett.notification.org.application.usecase.sender.SendersChain;
 import scarlett.notification.org.application.usecase.service.DeliveryDispatcher;
 import scarlett.notification.org.common.model.MessageInformation;
@@ -14,7 +14,7 @@ import java.util.Objects;
 @Component
 public class DeliveryDispatcherImpl implements DeliveryDispatcher {
 
-    private final ChannelFactory factory;
+    private final SenderAdapter adapter;
 
     @Override
     public List<SendersChain> assembleChain(List<MessageInformation> messageInformation) {
@@ -24,7 +24,7 @@ public class DeliveryDispatcherImpl implements DeliveryDispatcher {
     private SendersChain generateChainElement(MessageInformation message) {
         SendersChain chain = new SendersChain();
         chain.setMessageInformation(message);
-        chain.setCurrent(factory);
+        chain.setCurrent(adapter);
         if (Objects.isNull(message.getFallback())) {
             return chain;
         }

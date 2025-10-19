@@ -1,4 +1,4 @@
-package scarlett.notification.org.application.presentation.controller;
+package scarlett.notification.org.application.presentation.crud.controller;
 
 
 import lombok.RequiredArgsConstructor;
